@@ -3,9 +3,32 @@
 
 {% block content %}
 
-<h1>Hello World!! You Bastard<h1>
-<br/>
-{{ api }}
+
+<br/><br/>
+
+
+<!-- this code section contains some bootstrap presentation stuff with some if statements to put up content and handle errors -->
+
+{% if api %}
+	{% if api == "Error." %}
+		There was an error, try again
+	{% else %}
+		<ul class="list-group {{ category_color }}">
+  			<li class="list-group-item">Air Quality: {{ api.0.AQI }}</li>
+  			<li class="list-group-item">Area:  {{ api.0.ReportingArea }}</li>
+  			<li class="list-group-item">Category: {{ api.0.Category.Name }}</li>			
+
+		<p>{{ category_description }}</p>
+
+	{% endif %}
+		</ul>
+	<br/><br/>
+
+
+	
+{% endif %}
+
+
 
 
 {% endblock %}
